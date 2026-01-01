@@ -1,0 +1,17 @@
+====================================================
+RESUME PDF - ACTION REQUIRED
+====================================================
+
+The PDF file was corrupted and has been removed.
+
+TO FIX THE DOWNLOAD:
+
+1. Go to: http://localhost:3002/resume
+2. Press Ctrl+P to print
+3. Choose "Save as PDF"
+4. Save as: Mujeeb_Ur_Rehman_Resume.pdf
+5. Place in: d:\Portfolio Latest\public\
+
+That's it! The download will work after this.
+
+====================================================
