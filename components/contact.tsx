@@ -62,31 +62,25 @@ export function Contact() {
     setIsSubmitting(true)
 
     try {
-      // Using FormSubmit service for GitHub Pages deployment
-      const response = await fetch('https://formsubmit.co/mujeebalishah147@gmail.com', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          _subject: `Portfolio Contact: ${formData.subject}`,
-          _captcha: 'false'
-        }),
+        body: JSON.stringify(formData),
       })
+
+      const data = await response.json()
 
       if (response.ok) {
         showToast("Message sent successfully! I'll get back to you soon.", "success")
         setFormData({ name: '', email: '', subject: '', message: '' })
         setErrors({})
       } else {
-        showToast("Failed to send message. Please try again.", "error")
+        showToast(data.error || "Failed to send message. Please try again.", "error")
       }
-    } catch {
+    } catch (error) {
+      console.error('Error:', error)
       showToast("An error occurred. Please try again later.", "error")
     } finally {
       setIsSubmitting(false)
