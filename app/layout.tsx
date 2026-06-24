@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import Script from "next/script";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Navigation } from "@/components/navigation";
@@ -10,11 +8,6 @@ import { ScrollProgress } from "@/components/scroll-progress";
 import { Analytics } from "@/components/analytics";
 import { generateStructuredData } from "@/lib/structured-data";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
 export const metadata: Metadata = {
   title: "Mujeeb Ur Rehman - Computer Science Student & Software Developer",
   description: "Computer Science student at Sukkur IBA University specializing in software development, AI, and web technologies. Explore my projects in Java, Python, and modern web development.",
@@ -22,9 +15,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Mujeeb Ur Rehman" }],
   creator: "Mujeeb Ur Rehman",
   icons: {
-    icon: '/icon.svg',
-    shortcut: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/Profile.png',
+    shortcut: '/Profile.png',
+    apple: '/Profile.png',
   },
   openGraph: {
     type: "website",
@@ -72,14 +65,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script
+        <script
           id="structured-data"
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-          strategy="beforeInteractive"
         />
       </head>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

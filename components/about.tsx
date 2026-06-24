@@ -5,7 +5,7 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, MapPin, GraduationCap, Award } from "lucide-react"
+import { Calendar, MapPin, GraduationCap, Award, Sparkles } from "lucide-react"
 
 export function About() {
   const ref = useRef(null)
@@ -15,23 +15,25 @@ export function About() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
+      transition: { staggerChildren: 0.15 }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5, ease: [0.175, 0.885, 0.32, 1.275] as const }
     }
   }
 
   return (
-    <section id="about" className="py-20 md:py-32">
+    <section id="about" className="py-20 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-primary/2 blur-3xl" />
+      </div>
+
       <div className="container px-4 md:px-6">
         <motion.div
           ref={ref}
@@ -40,135 +42,164 @@ export function About() {
           animate={isInView ? "visible" : "hidden"}
           className="mx-auto max-w-6xl"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
-              About Me
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <div className="flex items-center justify-center gap-3">
+              <div className="relative">
+                <img
+                  src="/Profile.png"
+                  alt="Mujeeb Ur Rehman"
+                  className="h-12 w-12 rounded-full border-2 border-border/40 object-cover"
+                />
+                <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-primary to-purple-500 opacity-50 blur-sm -z-10" />
+              </div>
+              <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+                About Me
+              </h2>
+            </div>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto mt-4">
               Get to know more about my journey, skills, and passion for development
             </p>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:gap-12">
-            {/* Personal Story */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <Card>
-                <CardContent className="p-6">
-                  <h3 className="text-2xl font-semibold mb-4">My Story</h3>
-                  <div className="space-y-4 text-muted-foreground">
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-6 relative">
+                  <h3 className="text-2xl font-semibold mb-4 flex items-center gap-2">
+                    My Story
+                    <Sparkles className="h-5 w-5 text-primary" />
+                  </h3>
+                  <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      I&apos;m a passionate Computer Science student at Sukkur IBA University 
-                      with a strong foundation in programming, software development, and 
-                      cybersecurity fundamentals. My interest in technology began with curiosity 
-                      and evolved into building secure and practical solutions through Android 
+                      I&apos;m a passionate Computer Science student at Sukkur IBA University
+                      with a strong foundation in programming, software development, and
+                      cybersecurity fundamentals. My interest in technology began with curiosity
+                      and evolved into building secure and practical solutions through Android
                       management applications and web-based systems.
                     </p>
                     <p>
-                      I specialize in Java, Python, and web technologies, with hands-on experience 
-                      in developing projects such as AI chatbots, management systems, and 
-                      security-aware web applications. I have a growing interest in cybersecurity, 
-                      particularly in web application security, secure coding practices, and 
+                      I specialize in Java, Python, and web technologies, with hands-on experience
+                      in developing projects such as AI chatbots, management systems, and
+                      security-aware web applications. I have a growing interest in cybersecurity,
+                      particularly in web application security, secure coding practices, and
                       vulnerability awareness.
                     </p>
                     <p>
-                      I enjoy problem-solving, analyzing systems for potential risks, and 
-                      collaborating in team environments. Outside of development, I actively 
-                      participate in university events, attend cybersecurity and tech sessions, 
-                      and assist students in computer labs. I am eager to deepen my cybersecurity 
-                      skills and gain real-world experience through a paid internship where I can 
+                      I enjoy problem-solving, analyzing systems for potential risks, and
+                      collaborating in team environments. Outside of development, I actively
+                      participate in university events, attend cybersecurity and tech sessions,
+                      and assist students in computer labs. I am eager to deepen my cybersecurity
+                      skills and gain real-world experience through a paid internship where I can
                       contribute to both development and security-focused tasks.
                     </p>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Quick Facts */}
-              <Card>
-                <CardContent className="p-6">
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-6 relative">
                   <h3 className="text-2xl font-semibold mb-4">Quick Facts</h3>
-                  <div className="space-y-3">
-                    <div className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">Based in Khairpur Mir&apos;s, Pakistan</span>
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 group/fact">
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
+                        <MapPin className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">Based in Khairpur Mir&apos;s, Pakistan</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Calendar className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">CGPA: 3.04</span>
+                    <div className="flex items-center gap-3 group/fact">
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
+                        <Calendar className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">CGPA: 3.04</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <GraduationCap className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">BS Computer Science (Ongoing)</span>
+                    <div className="flex items-center gap-3 group/fact">
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
+                        <GraduationCap className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">BS Computer Science (Ongoing)</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Award className="h-5 w-5 text-primary" />
-                      <span className="text-muted-foreground">40+ wpm Typing Speed</span>
+                    <div className="flex items-center gap-3 group/fact">
+                      <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
+                        <Award className="h-5 w-5 text-primary" />
+                      </div>
+                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">40+ wpm Typing Speed</span>
                     </div>
                   </div>
                 </CardContent>
               </Card>
             </motion.div>
 
-            {/* Skills & Interests */}
             <motion.div variants={itemVariants} className="space-y-6">
-              {/* Current Focus */}
-              <Card>
-                <CardContent className="p-6">
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-6 relative">
                   <h3 className="text-2xl font-semibold mb-4">Current Focus</h3>
                   <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium mb-2">Frontend Development</h4>
+                    <div className="group/focus">
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Frontend Development</h4>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary">React</Badge>
-                        <Badge variant="secondary">Next.js</Badge>
-                        <Badge variant="secondary">TypeScript</Badge>
-                        <Badge variant="secondary">Tailwind CSS</Badge>
+                        {["React", "Next.js", "TypeScript", "Tailwind CSS"].map(tech => (
+                          <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
+                        ))}
                       </div>
                     </div>
-                    <div>
-                      <h4 className="font-medium mb-2">Backend Development</h4>
+                    <div className="group/focus">
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Backend Development</h4>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary">Node.js</Badge>
-                        <Badge variant="secondary">Express</Badge>
-                        <Badge variant="secondary">PostgreSQL</Badge>
-                        <Badge variant="secondary">MongoDB</Badge>
+                        {["Node.js", "Express", "PostgreSQL", "MongoDB"].map(tech => (
+                          <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
+                        ))}
                       </div>
                     </div>
-                    <div>
-                      <h4 className="font-medium mb-2">Tools & Platforms</h4>
+                    <div className="group/focus">
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Tools & Platforms</h4>
                       <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary">Git</Badge>
-                        <Badge variant="secondary">Docker</Badge>
-                        <Badge variant="secondary">AWS</Badge>
-                        <Badge variant="secondary">Vercel</Badge>
+                        {["Git", "Docker", "AWS", "Vercel"].map(tech => (
+                          <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
+                        ))}
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Learning & Goals */}
-              <Card>
-                <CardContent className="p-6">
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-6 relative">
                   <h3 className="text-2xl font-semibold mb-4">Currently Learning</h3>
-                  <div className="space-y-3 text-muted-foreground">
-                    <p>• Advanced React patterns and performance optimization</p>
-                    <p>• Cloud architecture and microservices</p>
-                    <p>• Machine Learning fundamentals with Python</p>
-                    <p>• Mobile development with React Native</p>
+                  <div className="space-y-3">
+                    {[
+                      "Advanced React patterns and performance optimization",
+                      "Cloud architecture and microservices",
+                      "Machine Learning fundamentals with Python",
+                      "Mobile development with React Native"
+                    ].map((item, i) => (
+                      <div key={i} className="flex items-start gap-3 group/learn">
+                        <span className="h-2 w-2 mt-2 rounded-full bg-primary shrink-0 group-hover/learn:scale-150 transition-transform duration-300" />
+                        <span className="text-muted-foreground group-hover/learn:text-foreground transition-colors duration-300">{item}</span>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
 
-              {/* Values */}
-              <Card>
-                <CardContent className="p-6">
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <CardContent className="p-6 relative">
                   <h3 className="text-2xl font-semibold mb-4">What I Value</h3>
-                  <div className="space-y-3 text-muted-foreground">
-                    <p>• <strong>Clean Code:</strong> Readable, maintainable, and scalable solutions</p>
-                    <p>• <strong>User Experience:</strong> Building interfaces that users love</p>
-                    <p>• <strong>Continuous Learning:</strong> Staying updated with latest technologies</p>
-                    <p>• <strong>Collaboration:</strong> Working effectively in team environments</p>
+                  <div className="space-y-3">
+                    {[
+                      { title: "Clean Code", desc: "Readable, maintainable, and scalable solutions" },
+                      { title: "User Experience", desc: "Building interfaces that users love" },
+                      { title: "Continuous Learning", desc: "Staying updated with latest technologies" },
+                      { title: "Collaboration", desc: "Working effectively in team environments" },
+                    ].map((item, i) => (
+                      <div key={i} className="p-3 rounded-lg hover:bg-primary/5 transition-colors duration-300 group/value">
+                        <p><strong className="group-hover/value:text-primary transition-colors duration-300">{item.title}:</strong> <span className="text-muted-foreground">{item.desc}</span></p>
+                      </div>
+                    ))}
                   </div>
                 </CardContent>
               </Card>

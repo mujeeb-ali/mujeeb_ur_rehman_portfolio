@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import { Mail, Phone, MapPin, Send, Loader2, CheckCircle } from "lucide-react"
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, Sparkles } from "lucide-react"
 import { useToast } from "@/components/ui/toast"
 
 export function Contact() {
@@ -26,52 +26,36 @@ export function Contact() {
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = "Name is required"
-    }
-
+    if (!formData.name.trim()) newErrors.name = "Name is required"
     if (!formData.email.trim()) {
       newErrors.email = "Email is required"
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = "Please enter a valid email"
     }
-
-    if (!formData.subject.trim()) {
-      newErrors.subject = "Subject is required"
-    }
-
+    if (!formData.subject.trim()) newErrors.subject = "Subject is required"
     if (!formData.message.trim()) {
       newErrors.message = "Message is required"
     } else if (formData.message.trim().length < 10) {
       newErrors.message = "Message must be at least 10 characters"
     }
-
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
     if (!validateForm()) {
       showToast("Please fix the errors in the form", "error")
       return
     }
-
     setIsSubmitting(true)
-
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-
       const data = await response.json()
-
       if (response.ok) {
         showToast("Message sent successfully! I'll get back to you soon.", "success")
         setFormData({ name: '', email: '', subject: '', message: '' })
@@ -79,8 +63,7 @@ export function Contact() {
       } else {
         showToast(data.error || "Failed to send message. Please try again.", "error")
       }
-    } catch (error) {
-      console.error('Error:', error)
+    } catch {
       showToast("An error occurred. Please try again later.", "error")
     } finally {
       setIsSubmitting(false)
@@ -89,40 +72,34 @@ export function Contact() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }))
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }))
-    }
+    setFormData(prev => ({ ...prev, [name]: value }))
+    if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5, ease: [0.175, 0.885, 0.32, 1.275] as const }
     }
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32 bg-secondary/30">
+    <section id="contact" className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute -top-40 -left-40 h-[400px] w-[400px] rounded-full bg-primary/3 blur-3xl" />
+        <div className="absolute -bottom-40 -right-40 h-[300px] w-[300px] rounded-full bg-purple-500/3 blur-3xl" />
+      </div>
+
       <div className="container px-4 md:px-6">
         <motion.div
           ref={ref}
@@ -131,7 +108,6 @@ export function Contact() {
           animate={isInView ? "visible" : "hidden"}
           className="mx-auto max-w-6xl"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
               Get In Touch
@@ -142,60 +118,37 @@ export function Contact() {
           </motion.div>
 
           <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
-            {/* Contact Info */}
             <motion.div variants={itemVariants} className="lg:col-span-1">
               <div className="space-y-6">
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Mail className="h-5 w-5 text-primary" />
-                      Email
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-2">Drop me a line anytime</p>
-                    <a 
-                      href="mailto:mujeebalishah147@gmail.com"
-                      className="text-primary hover:underline"
-                    >
-                      mujeebalishah147@gmail.com
-                    </a>
-                  </CardContent>
-                </Card>
+                {[
+                  { icon: Mail, title: "Email", desc: "Drop me a line anytime", value: "mujeebalishah147@gmail.com", href: "mailto:mujeebalishah147@gmail.com" },
+                  { icon: Phone, title: "Phone", desc: "Call me for urgent matters", value: "+92 325 2170112", href: "tel:+923252170112" },
+                  { icon: MapPin, title: "Location", desc: "Currently based in", value: "Mustafa Colony Bhurgari, Khairpur Mir's (66020), Pakistan" },
+                ].map((item, i) => (
+                  <Card key={i} className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <CardHeader className="relative">
+                      <CardTitle className="flex items-center gap-3">
+                        <div className="p-2.5 rounded-xl bg-primary/10 group-hover:scale-110 transition-transform duration-300">
+                          <item.icon className="h-5 w-5 text-primary" />
+                        </div>
+                        {item.title}
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="relative">
+                      <p className="text-muted-foreground mb-2">{item.desc}</p>
+                      {item.href ? (
+                        <a href={item.href} className="text-primary hover:underline transition-all duration-300 hover:translate-x-0.5 inline-block">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p>{item.value}</p>
+                      )}
+                    </CardContent>
+                  </Card>
+                ))}
 
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-primary" />
-                      Phone
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-2">Call me for urgent matters</p>
-                    <a 
-                      href="tel:+923252170112"
-                      className="text-primary hover:underline"
-                    >
-                      +92 325 2170112
-                    </a>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-3">
-                      <MapPin className="h-5 w-5 text-primary" />
-                      Location
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground mb-2">Currently based in</p>
-                    <p>Mustafa Colony Bhurgari, Khairpur Mir&apos;s (66000), Pakistan</p>
-                  </CardContent>
-                </Card>
-
-                {/* Response Time */}
-                <Card className="border-primary/20 bg-primary/5">
+                <Card className="border-primary/20 bg-primary/5 hover:bg-primary/10 transition-all duration-300">
                   <CardContent className="pt-6">
                     <div className="flex items-center gap-3 mb-2">
                       <CheckCircle className="h-5 w-5 text-primary" />
@@ -209,11 +162,13 @@ export function Contact() {
               </div>
             </motion.div>
 
-            {/* Contact Form */}
             <motion.div variants={itemVariants} className="lg:col-span-2">
-              <Card>
+              <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover">
                 <CardHeader>
-                  <CardTitle>Send Message</CardTitle>
+                  <CardTitle className="flex items-center gap-2">
+                    Send Message
+                    <Sparkles className="h-5 w-5 text-primary" />
+                  </CardTitle>
                   <CardDescription>
                     Fill out the form below and I&apos;ll get back to you as soon as possible.
                   </CardDescription>
@@ -229,11 +184,9 @@ export function Contact() {
                           value={formData.name}
                           onChange={handleChange}
                           placeholder="Your full name"
-                          className={errors.name ? "border-red-500" : ""}
+                          className={`transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.name ? "border-red-500" : ""}`}
                         />
-                        {errors.name && (
-                          <p className="text-sm text-red-500">{errors.name}</p>
-                        )}
+                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="email">Email *</Label>
@@ -244,11 +197,9 @@ export function Contact() {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="your.email@example.com"
-                          className={errors.email ? "border-red-500" : ""}
+                          className={`transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.email ? "border-red-500" : ""}`}
                         />
-                        {errors.email && (
-                          <p className="text-sm text-red-500">{errors.email}</p>
-                        )}
+                        {errors.email && <p className="text-sm text-red-500">{errors.email}</p>}
                       </div>
                     </div>
 
@@ -259,12 +210,10 @@ export function Contact() {
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
-                        placeholder="What's this about?"
-                        className={errors.subject ? "border-red-500" : ""}
+                        placeholder="What&apos;s this about?"
+                        className={`transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.subject ? "border-red-500" : ""}`}
                       />
-                      {errors.subject && (
-                        <p className="text-sm text-red-500">{errors.subject}</p>
-                      )}
+                      {errors.subject && <p className="text-sm text-red-500">{errors.subject}</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -275,17 +224,15 @@ export function Contact() {
                         value={formData.message}
                         onChange={handleChange}
                         placeholder="Tell me about your project or just say hello..."
-                        className={`min-h-[120px] ${errors.message ? "border-red-500" : ""}`}
+                        className={`min-h-[120px] transition-all duration-300 focus:ring-2 focus:ring-primary/20 ${errors.message ? "border-red-500" : ""}`}
                       />
-                      {errors.message && (
-                        <p className="text-sm text-red-500">{errors.message}</p>
-                      )}
+                      {errors.message && <p className="text-sm text-red-500">{errors.message}</p>}
                     </div>
 
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full"
+                      className="w-full group relative overflow-hidden transition-all duration-300"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
@@ -295,7 +242,7 @@ export function Contact() {
                         </>
                       ) : (
                         <>
-                          <Send className="mr-2 h-4 w-4" />
+                          <Send className="mr-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                           Send Message
                         </>
                       )}
@@ -306,44 +253,28 @@ export function Contact() {
             </motion.div>
           </div>
 
-          {/* Alternative Contact Methods */}
-          <motion.div 
-            variants={itemVariants}
-            className="mt-16 text-center"
-          >
+          <div className="mt-16 text-center">
             <p className="text-muted-foreground mb-6">
               Prefer a different way to connect? Find me on:
             </p>
             <div className="flex justify-center gap-4">
-              <Button variant="outline" size="sm" asChild>
+              {[
+                { name: "LinkedIn", href: "https://www.linkedin.com/in/mujeeb-ur-rehman-shah/" },
+                { name: "GitHub", href: "https://github.com/mujeeb-ali" },
+                { name: "WhatsApp", href: "https://wa.me/923252170112" },
+              ].map((social) => (
                 <a
-                  href="https://www.linkedin.com/in/mujeeb-ur-rehman-shah/"
+                  key={social.name}
+                  href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center h-10 px-5 rounded-full bg-primary/5 border border-primary/20 text-sm font-semibold text-primary underline underline-offset-4 decoration-primary/30 hover:decoration-primary hover:bg-primary/15 hover:shadow-lg hover:shadow-primary/20 transition-all duration-300"
                 >
-                  LinkedIn
+                  {social.name}
                 </a>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href="https://github.com/mujeeb-ali"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  GitHub
-                </a>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <a
-                  href="https://x.com/mujeeb-ali"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Twitter
-                </a>
-              </Button>
+              ))}
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       </div>
     </section>

@@ -5,15 +5,14 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { 
-  // Code,
+import {
   Database,
-  // Palette,
-  Server, 
-  Smartphone, 
+  Server,
+  Smartphone,
   Cloud,
   GitBranch,
-  Monitor
+  Monitor,
+  Code2,
 } from "lucide-react"
 
 const skillCategories = [
@@ -28,18 +27,20 @@ const skillCategories = [
       { name: "Frontend Development", level: 87 },
       { name: "Backend Development", level: 80 }
     ],
-    color: "from-blue-500 to-cyan-500"
+    color: "from-blue-500 to-cyan-500",
+    iconBg: "bg-blue-500/10"
   },
   {
     title: "Programming Languages",
-    icon: Server,
+    icon: Code2,
     skills: [
       { name: "Java", level: 92 },
       { name: "Python", level: 88 },
       { name: "C++", level: 80 },
       { name: "C#", level: 70 }
     ],
-    color: "from-green-500 to-emerald-500"
+    color: "from-green-500 to-emerald-500",
+    iconBg: "bg-green-500/10"
   },
   {
     title: "Software Development",
@@ -51,7 +52,8 @@ const skillCategories = [
       { name: "Data Structures & Algorithms", level: 82 },
       { name: "Software Design", level: 80 }
     ],
-    color: "from-purple-500 to-pink-500"
+    color: "from-purple-500 to-pink-500",
+    iconBg: "bg-purple-500/10"
   },
   {
     title: "AI & Machine Learning",
@@ -62,7 +64,8 @@ const skillCategories = [
       { name: "Face Recognition", level: 80 },
       { name: "Chatbot Development", level: 82 }
     ],
-    color: "from-orange-500 to-red-500"
+    color: "from-orange-500 to-red-500",
+    iconBg: "bg-orange-500/10"
   },
   {
     title: "Tools & Productivity",
@@ -74,7 +77,8 @@ const skillCategories = [
       { name: "Problem Solving", level: 88 },
       { name: "Analytical Skills", level: 85 }
     ],
-    color: "from-indigo-500 to-purple-500"
+    color: "from-indigo-500 to-purple-500",
+    iconBg: "bg-indigo-500/10"
   },
   {
     title: "Mobile & Android",
@@ -84,35 +88,39 @@ const skillCategories = [
       { name: "Management Apps", level: 88 },
       { name: "Mobile UI Design", level: 80 }
     ],
-    color: "from-teal-500 to-blue-500"
+    color: "from-teal-500 to-blue-500",
+    iconBg: "bg-teal-500/10"
   }
 ]
 
 export function Skills() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
 
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5, ease: [0.175, 0.885, 0.32, 1.275] as const }
     }
   }
 
   return (
-    <section id="skills" className="py-20 md:py-32 bg-secondary/30">
+    <section id="skills" className="py-20 md:py-32 bg-secondary/30 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 right-0 h-[400px] w-[400px] rounded-full bg-primary/3 blur-3xl" />
+        <div className="absolute bottom-0 left-0 h-[300px] w-[300px] rounded-full bg-purple-500/3 blur-3xl" />
+      </div>
+
       <div className="container px-4 md:px-6">
         <motion.div
           ref={ref}
@@ -121,7 +129,6 @@ export function Skills() {
           animate={isInView ? "visible" : "hidden"}
           className="mx-auto max-w-7xl"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
               Skills & Technologies
@@ -131,7 +138,6 @@ export function Skills() {
             </p>
           </motion.div>
 
-          {/* Skills Grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {skillCategories.map((category, categoryIndex) => {
               const Icon = category.icon
@@ -141,35 +147,43 @@ export function Skills() {
                   variants={itemVariants}
                   custom={categoryIndex}
                 >
-                  <Card className="h-full hover:shadow-lg transition-shadow">
-                    <CardHeader>
-                      <CardTitle className="flex items-center gap-3">
-                        <div className={`p-2 rounded-lg bg-gradient-to-r ${category.color}`}>
-                          <Icon className="h-5 w-5 text-white" />
+                  <Card className="h-full border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover overflow-hidden group">
+                    <CardHeader className="relative">
+                      <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 group-hover:opacity-5 transition-opacity duration-500`} />
+                      <CardTitle className="flex items-center gap-3 relative">
+                        <div className={`p-2.5 rounded-xl ${category.iconBg} group-hover:scale-110 transition-transform duration-300`}>
+                          <Icon className={`h-5 w-5 text-${category.color.split(" ")[0].replace("from-", "")}`} />
                         </div>
                         <span className="text-lg">{category.title}</span>
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="space-y-4">
+                    <CardContent className="space-y-4 relative">
                       {category.skills.map((skill, skillIndex) => (
-                        <div key={skill.name} className="space-y-2">
+                        <div key={skill.name} className="space-y-1.5 group/skill">
                           <div className="flex justify-between items-center">
-                            <span className="text-sm font-medium">{skill.name}</span>
-                            <Badge variant="secondary" className="text-xs">
+                            <span className="text-sm font-medium group-hover/skill:text-primary transition-colors duration-300">
+                              {skill.name}
+                            </span>
+                            <Badge
+                              variant="secondary"
+                              className="text-xs transition-all duration-300 group-hover/skill:bg-primary/10 group-hover/skill:text-primary"
+                            >
                               {skill.level}%
                             </Badge>
                           </div>
-                          <div className="w-full bg-secondary rounded-full h-2">
+                          <div className="w-full bg-secondary rounded-full h-2.5 overflow-hidden">
                             <motion.div
-                              className={`h-2 rounded-full bg-gradient-to-r ${category.color}`}
+                              className={`h-full rounded-full bg-gradient-to-r ${category.color} relative`}
                               initial={{ width: 0 }}
                               animate={isInView ? { width: `${skill.level}%` } : { width: 0 }}
-                              transition={{ 
-                                duration: 1, 
-                                delay: categoryIndex * 0.1 + skillIndex * 0.05,
-                                ease: "easeOut"
+                              transition={{
+                                duration: 1,
+                                delay: categoryIndex * 0.1 + skillIndex * 0.08,
+                                ease: [0.175, 0.885, 0.32, 1]
                               }}
-                            />
+                            >
+                              <div className="absolute inset-0 bg-white/20 shimmer" />
+                            </motion.div>
                           </div>
                         </div>
                       ))}
@@ -180,8 +194,7 @@ export function Skills() {
             })}
           </div>
 
-          {/* Additional Skills */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="mt-16 text-center"
           >
@@ -192,7 +205,11 @@ export function Skills() {
                 "Headless CMS", "Microservices", "WebRTC", "Web3", "Blockchain",
                 "Machine Learning", "Data Visualization", "SEO", "Performance Optimization"
               ].map((tech) => (
-                <Badge key={tech} variant="outline" className="px-3 py-1">
+                <Badge
+                  key={tech}
+                  variant="outline"
+                  className="px-3 py-1.5 hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300 cursor-default"
+                >
                   {tech}
                 </Badge>
               ))}

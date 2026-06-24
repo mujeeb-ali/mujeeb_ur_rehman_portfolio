@@ -3,13 +3,12 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-// import Image from "next/image"
-// import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ExternalLink, Github, Filter, Search } from "lucide-react"
+import { ExternalLink, Github, Filter, Search, ArrowUpRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const projects = [
   {
@@ -102,7 +101,7 @@ const categories = ["All", "AI/ML", "Web Development", "Desktop App"]
 
 export function Projects() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
+  const isInView = useInView(ref, { once: true, amount: 0.1 })
   const [selectedCategory, setSelectedCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -118,23 +117,26 @@ export function Projects() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
+      transition: { staggerChildren: 0.1 }
     }
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6 }
+      transition: { duration: 0.5, ease: [0.175, 0.885, 0.32, 1.275] as const }
     }
   }
 
   return (
-    <section id="projects" className="py-20 md:py-32">
+    <section id="projects" className="py-20 md:py-32 relative overflow-hidden">
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/4 right-0 h-[300px] w-[300px] rounded-full bg-primary/3 blur-3xl" />
+        <div className="absolute bottom-1/4 left-0 h-[250px] w-[250px] rounded-full bg-purple-500/3 blur-3xl" />
+      </div>
+
       <div className="container px-4 md:px-6">
         <motion.div
           ref={ref}
@@ -143,7 +145,6 @@ export function Projects() {
           animate={isInView ? "visible" : "hidden"}
           className="mx-auto max-w-7xl"
         >
-          {/* Section Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
               Featured Projects
@@ -152,21 +153,19 @@ export function Projects() {
               A selection of projects that showcase my skills and experience in software development
             </p>
 
-            {/* Search Bar */}
             <div className="max-w-md mx-auto mb-6">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <div className="relative group">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground group-focus-within:text-primary transition-colors" />
                 <Input
                   type="text"
                   placeholder="Search projects by name, technology..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 h-12"
+                  className="pl-10 h-12 transition-all duration-300 focus:ring-2 focus:ring-primary/20"
                 />
               </div>
             </div>
 
-            {/* Category Filter */}
             <div className="flex flex-wrap justify-center gap-2">
               {categories.map((category) => (
                 <Button
@@ -174,7 +173,12 @@ export function Projects() {
                   variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
                   onClick={() => setSelectedCategory(category)}
-                  className="transition-all"
+                  className={cn(
+                    "transition-all duration-300",
+                    selectedCategory === category
+                      ? "shadow-lg shadow-primary/25"
+                      : "hover:border-primary/50 hover:text-primary"
+                  )}
                 >
                   <Filter className="h-4 w-4 mr-2" />
                   {category}
@@ -183,7 +187,6 @@ export function Projects() {
             </div>
           </motion.div>
 
-          {/* Projects Grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project, index) => (
               <motion.div
@@ -192,46 +195,38 @@ export function Projects() {
                 custom={index}
                 layout
               >
-                <Card className="group h-full overflow-hidden hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/50">
-                  {/* Project Image */}
+                <Card className="group h-full overflow-hidden border-2 border-border/50 hover:border-primary/30 transition-all duration-500 card-hover">
                   <div className="relative aspect-video overflow-hidden">
                     <div className={`w-full h-full bg-gradient-to-br ${project.gradient} flex items-center justify-center`}>
-                      <span className="text-7xl" role="img" aria-label={project.title}>
+                      <span className="text-7xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                         {project.icon}
                       </span>
                     </div>
-                    {/* Overlay on hover */}
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                      {project.liveUrl && (
-                        <Button size="sm" asChild>
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="h-4 w-4 mr-2" />
-                            Live Demo
-                          </a>
-                        </Button>
-                      )}
-                      {project.githubUrl && (
-                        <Button size="sm" variant="outline" asChild>
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="h-4 w-4 mr-2" />
-                            Code
-                          </a>
-                        </Button>
-                      )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-end p-4">
+                      <div className="flex gap-2 w-full">
+                        {project.liveUrl && (
+                          <Button size="sm" className="flex-1" asChild>
+                            <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                              <ExternalLink className="h-4 w-4 mr-2" />
+                              Live Demo
+                            </a>
+                          </Button>
+                        )}
+                        {project.githubUrl && (
+                          <Button size="sm" variant="secondary" className="flex-1" asChild>
+                            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                              <Github className="h-4 w-4 mr-2" />
+                              Code
+                            </a>
+                          </Button>
+                        )}
+                      </div>
                     </div>
                   </div>
 
                   <CardHeader>
                     <div className="flex items-start justify-between gap-2">
-                      <CardTitle className="text-xl group-hover:text-primary transition-colors">
+                      <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
                         {project.title}
                       </CardTitle>
                       <Badge variant="secondary" className="shrink-0">
@@ -241,44 +236,38 @@ export function Projects() {
                   </CardHeader>
 
                   <CardContent>
-                    <CardDescription className="text-base mb-4">
+                    <CardDescription className="text-base mb-4 leading-relaxed">
                       {project.description}
                     </CardDescription>
 
-                    {/* Technologies */}
                     <div className="space-y-3">
-                      <h4 className="text-sm font-medium">Technologies Used:</h4>
+                      <h4 className="text-sm font-medium text-muted-foreground">Technologies:</h4>
                       <div className="flex flex-wrap gap-2">
                         {project.technologies.map((tech) => (
-                          <Badge key={tech} variant="outline" className="text-xs">
+                          <Badge
+                            key={tech}
+                            variant="outline"
+                            className="text-xs hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-300"
+                          >
                             {tech}
                           </Badge>
                         ))}
                       </div>
                     </div>
 
-                    {/* Links */}
                     <div className="flex gap-2 mt-6">
                       {project.liveUrl && (
-                        <Button size="sm" asChild className="flex-1">
-                          <a
-                            href={project.liveUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <ExternalLink className="h-4 w-4 mr-2" />
+                        <Button size="sm" className="flex-1 group/btn" asChild>
+                          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4 mr-2 transition-transform group-hover/btn:-translate-y-0.5" />
                             Live Demo
                           </a>
                         </Button>
                       )}
                       {project.githubUrl && (
-                        <Button size="sm" variant="outline" asChild className="flex-1">
-                          <a
-                            href={project.githubUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            <Github className="h-4 w-4 mr-2" />
+                        <Button size="sm" variant="outline" className="flex-1 group/btn" asChild>
+                          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2 transition-transform group-hover/btn:scale-110" />
                             View Code
                           </a>
                         </Button>
@@ -290,19 +279,29 @@ export function Projects() {
             ))}
           </div>
 
-          {/* View More Projects */}
-          <motion.div 
+          {filteredProjects.length === 0 && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20"
+            >
+              <p className="text-xl text-muted-foreground">No projects found matching your criteria.</p>
+            </motion.div>
+          )}
+
+          <motion.div
             variants={itemVariants}
             className="text-center mt-16"
           >
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="group hover:border-primary/50 hover:text-primary transition-all duration-300">
               <a
                 href="https://github.com/mujeeb-ali"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Github className="h-5 w-5 mr-2" />
+                <Github className="h-5 w-5 mr-2 transition-transform group-hover:scale-110" />
                 View All Projects on GitHub
+                <ArrowUpRight className="h-4 w-4 ml-1 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               </a>
             </Button>
           </motion.div>
@@ -311,3 +310,5 @@ export function Projects() {
     </section>
   )
 }
+
+
