@@ -1,8 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -12,8 +11,6 @@ import { Mail, Phone, MapPin, Send, Loader2, CheckCircle, Sparkles } from "lucid
 import { useToast } from "@/components/ui/toast"
 
 export function Contact() {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { showToast } = useToast()
   const [formData, setFormData] = useState({
@@ -76,20 +73,12 @@ export function Contact() {
     if (errors[name]) setErrors(prev => ({ ...prev, [name]: '' }))
   }
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 20 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.5, ease: [0.175, 0.885, 0.32, 1.275] as const }
+      transition: { duration: 0.4, ease: [0.175, 0.885, 0.32, 1.275] as const }
     }
   }
 
@@ -102,23 +91,23 @@ export function Contact() {
 
       <div className="container px-4 md:px-6">
         <motion.div
-          ref={ref}
-          variants={containerVariants}
+          variants={fadeInUp}
           initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
           className="mx-auto max-w-6xl"
         >
-          <motion.div variants={itemVariants} className="text-center mb-16">
+          <div className="text-center mb-16">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl mb-4">
               Get In Touch
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind? I&apos;d love to hear from you. Send me a message and let&apos;s discuss how we can work together.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid gap-8 lg:grid-cols-3 lg:gap-12">
-            <motion.div variants={itemVariants} className="lg:col-span-1">
+            <div className="lg:col-span-1">
               <div className="space-y-6">
                 {[
                   { icon: Mail, title: "Email", desc: "Drop me a line anytime", value: "mujeebalishah147@gmail.com", href: "mailto:mujeebalishah147@gmail.com" },
@@ -160,9 +149,9 @@ export function Contact() {
                   </CardContent>
                 </Card>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants} className="lg:col-span-2">
+            <div className="lg:col-span-2">
               <Card className="border-2 border-border/50 hover:border-primary/20 transition-all duration-500 card-hover">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
@@ -250,7 +239,7 @@ export function Contact() {
                   </form>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           </div>
 
           <div className="mt-16 text-center">

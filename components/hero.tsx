@@ -4,6 +4,7 @@ import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 import { ArrowDown, Github, Linkedin, Mail, FileText, Twitter, ChevronDown } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 const roles = [
@@ -88,10 +89,12 @@ export function Hero() {
               <div className="absolute inset-0 rounded-full bg-background" style={{ margin: "3px" }} />
             </div>
             <div className="relative h-40 w-40 overflow-hidden rounded-full border-[3px] border-background shadow-xl">
-              <img
+              <Image
                 src="/Profile.png"
                 alt="Mujeeb Ur Rehman"
-                className="h-full w-full object-cover hover:scale-110 transition-transform duration-500"
+                fill
+                priority
+                className="object-cover hover:scale-110 transition-transform duration-500"
               />
             </div>
           </motion.div>
@@ -160,7 +163,7 @@ export function Hero() {
                   key={social.label}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.8 + i * 0.1 }}
+                  transition={{ duration: 0.3, delay: 0.3 + i * 0.07 }}
                 >
                   <Button
                     variant="ghost"
