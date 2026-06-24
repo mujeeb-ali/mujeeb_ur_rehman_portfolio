@@ -66,7 +66,7 @@ export function Footer() {
             </Link>
             <p className="text-muted-foreground mb-6 max-w-md leading-relaxed">
               Computer Science Student at Sukkur IBA University, passionate about software development,
-              AI, and creating innovative solutions.
+              CyberSecurity, and creating innovative solutions.
             </p>
             <div className="flex items-center gap-3">
               {footerLinks.social.map((social) => {
