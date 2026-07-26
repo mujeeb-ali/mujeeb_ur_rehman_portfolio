@@ -9,7 +9,7 @@ import { Calendar, Award, Trophy, Target, Lightbulb, Shield, Brain, Globe, FileC
 
 const achievements = [
   {
-    year: "2025",
+    year: "2026",
     title: "Google Professional Cybersecurity Certificate",
     description: "Completed Google's professional cybersecurity certification on Coursera covering security foundations, SIEM, and incident response",
     icon: Shield,
@@ -17,7 +17,7 @@ const achievements = [
     gradient: "from-blue-500 to-cyan-500"
   },
   {
-    year: "2025",
+    year: "2026",
     title: "Introduction to SOC — LetsDefend",
     description: "Completed SOC fundamentals training on LetsDefend covering SOC workflows, alert triage, and incident handling",
     icon: Shield,
@@ -25,7 +25,7 @@ const achievements = [
     gradient: "from-red-500 to-orange-500"
   },
   {
-    year: "2025",
+    year: "2026",
     title: "Introduction to SIEM — Google Cloud",
     description: "Completed SIEM fundamentals on Google Cloud including log ingestion, query generation, and dashboard analysis",
     icon: Brain,
@@ -33,7 +33,7 @@ const achievements = [
     gradient: "from-purple-500 to-pink-500"
   },
   {
-    year: "2025",
+    year: "2026",
     title: "Introduction to Cybersecurity — Cisco & IBM",
     description: "Completed cybersecurity fundamentals covering threat landscape, cryptography, and network security basics",
     icon: Globe,
@@ -41,7 +41,7 @@ const achievements = [
     gradient: "from-green-500 to-emerald-500"
   },
   {
-    year: "2025",
+    year: "2024",
     title: "Cybersecurity Workshop — Lincoln Corner Khairpur",
     description: "Attended a two-day cybersecurity workshop covering web security, secure coding, and vulnerability awareness",
     icon: Lightbulb,
