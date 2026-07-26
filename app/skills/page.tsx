@@ -3,7 +3,7 @@ import { Metadata } from "next"
 
 export const metadata: Metadata = {
   title: "Skills - Mujeeb Ur Rehman",
-  description: "Explore the technical skills and expertise of Mujeeb Ur Rehman in Java, Python, Web Development, and AI/ML.",
+  description: "Explore the cybersecurity and technical skills of Mujeeb Ur Rehman in SOC operations, threat detection, SIEM, and security tools.",
 }
 
 export default function SkillsPage() {

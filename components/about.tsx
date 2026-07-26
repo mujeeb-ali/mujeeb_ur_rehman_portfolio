@@ -57,7 +57,7 @@ export function About() {
               </h2>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto mt-4">
-              Get to know more about my journey, skills, and passion for development
+              Get to know more about my journey into cybersecurity and SOC operations
             </p>
           </motion.div>
 
@@ -72,26 +72,25 @@ export function About() {
                   </h3>
                   <div className="space-y-4 text-muted-foreground leading-relaxed">
                     <p>
-                      I&apos;m a passionate Computer Science student at Sukkur IBA University
-                      with a strong foundation in programming, software development, and
-                      cybersecurity fundamentals. My interest in technology began with curiosity
-                      and evolved into building secure and practical solutions through Android
-                      management applications and web-based systems.
+                      I&apos;m a Computer Science student at Sukkur IBA University specializing in
+                      SOC operations, threat detection, and incident response. My journey into
+                      cybersecurity began with a curiosity about how systems work and evolved into
+                      hands-on practice with SIEM navigation, log analysis, and network traffic
+                      analysis through platforms like LetsDefend and Google Cloud SIEM.
                     </p>
                     <p>
-                      I specialize in Java, Python, and web technologies, with hands-on experience
-                      in developing projects such as AI chatbots, management systems, and
-                      security-aware web applications. I have a growing interest in cybersecurity,
-                      particularly in web application security, secure coding practices, and
-                      vulnerability awareness.
+                      I have a solid foundation in Python, Linux, and core networking protocols
+                      with a strong grasp of the MITRE ATT&amp;CK framework and NIST Incident
+                      Response life cycle. I&apos;ve built projects ranging from AI chatbots to
+                      secure web applications, always with an emphasis on security best practices.
                     </p>
                     <p>
-                      I enjoy problem-solving, analyzing systems for potential risks, and
-                      collaborating in team environments. Outside of development, I actively
-                      participate in university events, attend cybersecurity and tech sessions,
-                      and assist students in computer labs. I am eager to deepen my cybersecurity
-                      skills and gain real-world experience through an entry level role where I can
-                      contribute to both development and security-focused tasks.
+                      I enjoy analyzing systems for potential risks, investigating security alerts,
+                      and collaborating in team environments. I actively participate in
+                      cybersecurity workshops, university tech events, and continuously build my
+                      skills through practical labs and certifications. I am seeking an entry level
+                      SOC Analyst / Blue Team role where I can monitor, analyze, and mitigate
+                      security events in a live environment.
                     </p>
                   </div>
                 </CardContent>
@@ -112,7 +111,7 @@ export function About() {
                       <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
                         <Calendar className="h-5 w-5 text-primary" />
                       </div>
-                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">CGPA: 3.04</span>
+                      <span className="text-muted-foreground group-hover/fact:text-foreground transition-colors duration-300">CGPA: 3.01</span>
                     </div>
                     <div className="flex items-center gap-3 group/fact">
                       <div className="p-2 rounded-lg bg-primary/10 group-hover/fact:bg-primary/20 transition-colors duration-300">
@@ -138,25 +137,25 @@ export function About() {
                   <h3 className="text-2xl font-semibold mb-4">Current Focus</h3>
                   <div className="space-y-4">
                     <div className="group/focus">
-                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Frontend Development</h4>
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Security Operations</h4>
                       <div className="flex flex-wrap gap-2">
-                        {["React", "Next.js", "TypeScript", "Tailwind CSS"].map(tech => (
+                        {["SIEM", "Log Analysis", "Threat Detection", "Incident Response"].map(tech => (
                           <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
                         ))}
                       </div>
                     </div>
                     <div className="group/focus">
-                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Backend Development</h4>
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Security Tools</h4>
                       <div className="flex flex-wrap gap-2">
-                        {["Node.js", "Express", "PostgreSQL", "MongoDB"].map(tech => (
+                        {["Wireshark", "Nmap", "tcpdump", "LetsDefend"].map(tech => (
                           <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
                         ))}
                       </div>
                     </div>
                     <div className="group/focus">
-                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Tools & Platforms</h4>
+                      <h4 className="font-medium mb-2 group-hover/focus:text-primary transition-colors duration-300">Networking & Protocols</h4>
                       <div className="flex flex-wrap gap-2">
-                        {["Git", "Docker", "AWS", "Vercel"].map(tech => (
+                        {["TCP/IP", "DNS", "HTTP/HTTPS", "Firewalls"].map(tech => (
                           <Badge key={tech} variant="secondary" className="hover:bg-primary/10 hover:text-primary transition-all duration-300 cursor-default">{tech}</Badge>
                         ))}
                       </div>
@@ -171,10 +170,10 @@ export function About() {
                   <h3 className="text-2xl font-semibold mb-4">Currently Learning</h3>
                   <div className="space-y-3">
                     {[
-                      "Advanced React patterns and performance optimization",
-                      "Cloud architecture and microservices",
-                      "Machine Learning fundamentals with Python",
-                      "Mobile development with React Native"
+                      "Advanced SIEM analysis and threat hunting",
+                      "Splunk and cloud security platforms",
+                      "Python automation for security tasks",
+                      "Network security and penetration testing fundamentals"
                     ].map((item, i) => (
                       <div key={i} className="flex items-start gap-3 group/learn">
                         <span className="h-2 w-2 mt-2 rounded-full bg-primary shrink-0 group-hover/learn:scale-150 transition-transform duration-300" />
@@ -191,10 +190,10 @@ export function About() {
                   <h3 className="text-2xl font-semibold mb-4">What I Value</h3>
                   <div className="space-y-3">
                     {[
-                      { title: "Clean Code", desc: "Readable, maintainable, and scalable solutions" },
-                      { title: "User Experience", desc: "Building interfaces that users love" },
-                      { title: "Continuous Learning", desc: "Staying updated with latest technologies" },
-                      { title: "Collaboration", desc: "Working effectively in team environments" },
+                      { title: "Security First", desc: "Prioritizing secure practices in every solution" },
+                      { title: "Incident Readiness", desc: "Being prepared to detect and respond to threats" },
+                      { title: "Continuous Learning", desc: "Staying updated with the latest security landscape" },
+                      { title: "Collaboration", desc: "Working effectively in SOC and team environments" },
                     ].map((item, i) => (
                       <div key={i} className="p-3 rounded-lg hover:bg-primary/5 transition-colors duration-300 group/value">
                         <p><strong className="group-hover/value:text-primary transition-colors duration-300">{item.title}:</strong> <span className="text-muted-foreground">{item.desc}</span></p>

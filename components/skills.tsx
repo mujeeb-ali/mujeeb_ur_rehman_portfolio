@@ -6,90 +6,94 @@ import { useRef } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import {
-  Database,
-  Server,
-  Smartphone,
-  Cloud,
-  GitBranch,
-  Monitor,
+  Shield,
+  Network,
+  Terminal,
   Code2,
+  Monitor,
+  GitBranch,
 } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Web Development",
+    title: "Security Operations",
+    icon: Shield,
+    skills: [
+      { name: "Incident Response Lifecycle", level: 85 },
+      { name: "Threat Detection & Triage", level: 82 },
+      { name: "Log Analysis", level: 88 },
+      { name: "Vulnerability Management", level: 78 },
+      { name: "MITRE ATT&CK Framework", level: 80 },
+      { name: "Phishing Analysis", level: 82 }
+    ],
+    color: "from-red-500 to-orange-500",
+    iconBg: "bg-red-500/10"
+  },
+  {
+    title: "Security Tools & SIEM",
     icon: Monitor,
     skills: [
-      { name: "HTML5", level: 90 },
-      { name: "CSS3", level: 85 },
-      { name: "JavaScript", level: 88 },
-      { name: "Responsive Design", level: 85 },
-      { name: "Frontend Development", level: 87 },
-      { name: "Backend Development", level: 80 }
+      { name: "Google Cloud SIEM", level: 85 },
+      { name: "Splunk (Basics)", level: 72 },
+      { name: "Wireshark", level: 82 },
+      { name: "Nmap", level: 80 },
+      { name: "tcpdump", level: 78 },
+      { name: "LetsDefend Platform", level: 85 }
     ],
     color: "from-blue-500 to-cyan-500",
     iconBg: "bg-blue-500/10"
   },
   {
-    title: "Programming Languages",
+    title: "Networking & Protocols",
+    icon: Network,
+    skills: [
+      { name: "TCP/IP", level: 88 },
+      { name: "DNS", level: 85 },
+      { name: "HTTP/HTTPS", level: 90 },
+      { name: "Firewalls", level: 80 },
+      { name: "Network Traffic Analysis", level: 82 },
+      { name: "Subnetting", level: 75 }
+    ],
+    color: "from-teal-500 to-green-500",
+    iconBg: "bg-teal-500/10"
+  },
+  {
+    title: "Programming & Scripting",
     icon: Code2,
     skills: [
-      { name: "Java", level: 92 },
       { name: "Python", level: 88 },
-      { name: "C++", level: 80 },
-      { name: "C#", level: 70 }
+      { name: "SQL", level: 82 },
+      { name: "Bash", level: 75 },
+      { name: "JavaScript", level: 85 },
+      { name: "C++", level: 78 }
     ],
     color: "from-green-500 to-emerald-500",
     iconBg: "bg-green-500/10"
   },
   {
-    title: "Software Development",
-    icon: Database,
+    title: "Operating Systems",
+    icon: Terminal,
     skills: [
-      { name: "GUI Development", level: 85 },
-      { name: "CLI Applications", level: 80 },
-      { name: "Object-Oriented Programming", level: 88 },
-      { name: "Data Structures & Algorithms", level: 82 },
-      { name: "Software Design", level: 80 }
+      { name: "Linux (Ubuntu/Debian CLI)", level: 85 },
+      { name: "Windows Event Viewer", level: 80 },
+      { name: "Windows Command Line", level: 82 },
+      { name: "Virtualization Basics", level: 75 }
     ],
     color: "from-purple-500 to-pink-500",
     iconBg: "bg-purple-500/10"
   },
   {
-    title: "AI & Machine Learning",
-    icon: Cloud,
-    skills: [
-      { name: "Natural Language Processing", level: 75 },
-      { name: "Computer Vision", level: 78 },
-      { name: "Face Recognition", level: 80 },
-      { name: "Chatbot Development", level: 82 }
-    ],
-    color: "from-orange-500 to-red-500",
-    iconBg: "bg-orange-500/10"
-  },
-  {
-    title: "Tools & Productivity",
+    title: "Core CS Fundamentals",
     icon: GitBranch,
     skills: [
-      { name: "MS Word", level: 90 },
-      { name: "MS Excel", level: 92 },
-      { name: "Version Control (Git)", level: 80 },
-      { name: "Problem Solving", level: 88 },
-      { name: "Analytical Skills", level: 85 }
+      { name: "Data Structures & Algorithms", level: 82 },
+      { name: "Computer Networks", level: 88 },
+      { name: "Operating Systems", level: 80 },
+      { name: "Database Systems", level: 85 },
+      { name: "Software Engineering", level: 82 }
     ],
     color: "from-indigo-500 to-purple-500",
     iconBg: "bg-indigo-500/10"
-  },
-  {
-    title: "Mobile & Android",
-    icon: Smartphone,
-    skills: [
-      { name: "Android Development", level: 85 },
-      { name: "Management Apps", level: 88 },
-      { name: "Mobile UI Design", level: 80 }
-    ],
-    color: "from-teal-500 to-blue-500",
-    iconBg: "bg-teal-500/10"
   }
 ]
 
@@ -134,7 +138,7 @@ export function Skills() {
               Skills & Technologies
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              A comprehensive overview of my technical expertise and proficiency levels
+              Security operations, threat detection, and technical proficiencies
             </p>
           </motion.div>
 
@@ -198,12 +202,13 @@ export function Skills() {
             variants={itemVariants}
             className="mt-16 text-center"
           >
-            <h3 className="text-2xl font-semibold mb-6">Other Technologies I Work With</h3>
+            <h3 className="text-2xl font-semibold mb-6">Additional Skills & Technologies</h3>
             <div className="flex flex-wrap justify-center gap-3 max-w-4xl mx-auto">
               {[
-                "Jest", "Cypress", "Storybook", "Stripe", "Auth0", "Supabase",
-                "Headless CMS", "Microservices", "WebRTC", "Web3", "Blockchain",
-                "Machine Learning", "Data Visualization", "SEO", "Performance Optimization"
+                "NIST CSF", "NIST Incident Response Lifecycle", "PCAP Analysis",
+                "IOC Identification", "Google Professional Cybersecurity",
+                "Python Automation", "Secure Coding", "Web Security",
+                "Java", "Node.js", "Git", "Chrome DevTools"
               ].map((tech) => (
                 <Badge
                   key={tech}
