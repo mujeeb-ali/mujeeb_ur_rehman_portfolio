@@ -5,40 +5,64 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Calendar, Award, Trophy, Target, Lightbulb, Sparkles } from "lucide-react"
+import { Calendar, Award, Trophy, Target, Lightbulb, Shield, Brain, Globe, FileCode } from "lucide-react"
 
 const achievements = [
   {
     year: "2025",
-    title: "Sports Gala Participation",
-    description: "Participated in Sports Gala 2025 at Sukkur IBA University",
-    icon: Trophy,
-    category: "Sports",
-    gradient: "from-amber-500 to-orange-500"
-  },
-  {
-    year: "2024",
-    title: "Math Olympiad Competition",
-    description: "Competed in the Math Olympiad at Sukkur IBA University",
-    icon: Target,
-    category: "Academic",
+    title: "Google Professional Cybersecurity Certificate",
+    description: "Completed Google's professional cybersecurity certification on Coursera covering security foundations, SIEM, and incident response",
+    icon: Shield,
+    category: "Certification",
     gradient: "from-blue-500 to-cyan-500"
   },
   {
-    year: "2024",
-    title: "SIBA FEST Participant",
-    description: "Participated in SIBA FEST at Sukkur IBA University",
-    icon: Award,
-    category: "Event",
+    year: "2025",
+    title: "Introduction to SOC — LetsDefend",
+    description: "Completed SOC fundamentals training on LetsDefend covering SOC workflows, alert triage, and incident handling",
+    icon: Shield,
+    category: "Certification",
+    gradient: "from-red-500 to-orange-500"
+  },
+  {
+    year: "2025",
+    title: "Introduction to SIEM — Google Cloud",
+    description: "Completed SIEM fundamentals on Google Cloud including log ingestion, query generation, and dashboard analysis",
+    icon: Brain,
+    category: "Certification",
     gradient: "from-purple-500 to-pink-500"
   },
   {
-    year: "2024",
-    title: "Cyber Security Training",
-    description: "Attended Two-Day Cyber Security Session by Lincoln Corner",
-    icon: Lightbulb,
-    category: "Training",
+    year: "2025",
+    title: "Introduction to Cybersecurity — Cisco & IBM",
+    description: "Completed cybersecurity fundamentals covering threat landscape, cryptography, and network security basics",
+    icon: Globe,
+    category: "Certification",
     gradient: "from-green-500 to-emerald-500"
+  },
+  {
+    year: "2025",
+    title: "Cybersecurity Workshop — Lincoln Corner Khairpur",
+    description: "Attended a two-day cybersecurity workshop covering web security, secure coding, and vulnerability awareness",
+    icon: Lightbulb,
+    category: "Workshop",
+    gradient: "from-amber-500 to-orange-500"
+  },
+  {
+    year: "2025",
+    title: "SIBAFEST: Tackle with Tech",
+    description: "Participated in SIBAFEST tech competition at Sukkur IBA University",
+    icon: Trophy,
+    category: "Event",
+    gradient: "from-teal-500 to-blue-500"
+  },
+  {
+    year: "2024-2025",
+    title: "Python, SQL & Git Certifications",
+    description: "Earned certifications from DataCamp covering Python programming, SQL databases, and version control with Git",
+    icon: FileCode,
+    category: "Certification",
+    gradient: "from-indigo-500 to-purple-500"
   },
   {
     year: "2023",
@@ -46,7 +70,7 @@ const achievements = [
     description: "Started BS Computer Science at Sukkur IBA University Khairpur Campus",
     icon: Award,
     category: "Education",
-    gradient: "from-indigo-500 to-purple-500"
+    gradient: "from-rose-500 to-red-500"
   },
   {
     year: "2021",
@@ -54,7 +78,7 @@ const achievements = [
     description: "Secured A1 Grade in Intermediate Pre-Engineering",
     icon: Trophy,
     category: "Education",
-    gradient: "from-rose-500 to-red-500"
+    gradient: "from-amber-500 to-yellow-500"
   },
 ]
 
