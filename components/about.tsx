@@ -90,7 +90,7 @@ export function About() {
                       collaborating in team environments. Outside of development, I actively
                       participate in university events, attend cybersecurity and tech sessions,
                       and assist students in computer labs. I am eager to deepen my cybersecurity
-                      skills and gain real-world experience through a paid internship where I can
+                      skills and gain real-world experience through an entry level role where I can
                       contribute to both development and security-focused tasks.
                     </p>
                   </div>

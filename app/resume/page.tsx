@@ -4,7 +4,7 @@ import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Download, ExternalLink, Calendar, MapPin, Mail, Phone } from "lucide-react"
+import { Download, ExternalLink, Calendar, MapPin, Mail, Phone, Linkedin, Github } from "lucide-react"
 import Link from "next/link"
 
 export default function ResumePage() {
@@ -27,8 +27,8 @@ export default function ResumePage() {
               Download my resume or view my professional experience below
             </p>
             <Button size="lg" asChild>
-              <a 
-                href="/Mujeeb_Ur_Rehman_Resume.pdf" 
+              <a
+                href="/Mujeeb_Ur_Rehman_Resume.pdf"
                 download="Mujeeb_Ur_Rehman_Resume.pdf"
                 onClick={(e) => {
                   e.preventDefault();
@@ -53,35 +53,34 @@ export default function ResumePage() {
             </Button>
           </motion.div>
 
-          {/* Personal Information */}
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
+          {/* Header Card */}
+          <motion.div {...fadeInUp} className="mb-12">
             <Card>
               <CardHeader>
                 <CardTitle className="text-2xl">Mujeeb Ur Rehman</CardTitle>
-                <CardDescription className="text-lg">Computer Science Student & Software Developer</CardDescription>
+                <CardDescription className="text-lg">Aspiring SOC Analyst | Blue Team &amp; Security Operations</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="grid gap-4 md:grid-cols-2">
                   <div className="flex items-center gap-2">
-                    <Mail className="h-4 w-4 text-primary" />
-                    <span>mujeebalishah147@gmail.com</span>
+                    <MapPin className="h-4 w-4 text-primary" />
+                    <span>Khairpur Mir&apos;s, Sindh, Pakistan</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Phone className="h-4 w-4 text-primary" />
                     <span>+92 325 2170112</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-4 w-4 text-primary" />
-                    <span>Khairpur Mir&apos;s, Pakistan</span>
+                    <Mail className="h-4 w-4 text-primary" />
+                    <span>mujeebalishah147@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <ExternalLink className="h-4 w-4 text-primary" />
-                    <Link href="/" className="hover:underline">
-                      Portfolio Website
-                    </Link>
+                    <Linkedin className="h-4 w-4 text-primary" />
+                    <a href="https://linkedin.com/in/mujeeb-ur-rehman-shah" target="_blank" rel="noopener noreferrer" className="hover:underline">linkedin.com/in/mujeeb-ur-rehman-shah</a>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Github className="h-4 w-4 text-primary" />
+                    <a href="https://github.com/mujeeb-ali" target="_blank" rel="noopener noreferrer" className="hover:underline">github.com/mujeeb-ali</a>
                   </div>
                 </div>
               </CardContent>
@@ -89,278 +88,70 @@ export default function ResumePage() {
           </motion.div>
 
           {/* Professional Summary */}
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
+          <motion.div {...fadeInUp} className="mb-12">
             <Card>
               <CardHeader>
                 <CardTitle>Professional Summary</CardTitle>
               </CardHeader>
               <CardContent>
                 <p className="text-muted-foreground leading-relaxed">
-                  Computer Science student at Sukkur IBA University with a strong foundation in programming and 
-                  a passion for software development. Specialized in creating management applications for Android, 
-                  web development, and AI solutions. Proficient in Java, Python, C++, and web technologies with 
-                  experience in building diverse projects from chatbots to management systems. Strong analytical 
-                  and problem-solving skills with excellent proficiency in MS Office and a typing speed of 40+ wpm. 
-                  Eager team player committed to sharing knowledge and helping others achieve their goals.
+                  Motivated Computer Science undergraduate at Sukkur IBA University specializing in SOC operations, threat detection, and incident response fundamentals. Hands-on experience with SIEM navigation, log analysis, network traffic analysis, and SOC workflows through practical labs (LetsDefend, Google Cloud SIEM) and certifications. Proficient in Python, Linux, and core networking protocols with a solid grasp of the MITRE ATT&amp;CK framework and NIST Incident Response life cycle. Seeking an Entry-Level SOC Analyst / Blue Team Entry Level Role to assist in monitoring, analyzing, and mitigating security events in a live SOC environment.
                 </p>
               </CardContent>
             </Card>
           </motion.div>
 
-          {/* Experience */}
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>Education</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-8">
-                {/* Current Education */}
-                <div className="border-b border-border pb-6 last:border-0">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold">BS Computer Science</h3>
-                      <p className="text-primary font-medium">Sukkur IBA University Khairpur Campus</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span>Aug 2023 - Present</span>
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-3 w-3" />
-                      <span>Khairpur Mir&apos;s, Pakistan</span>
-                    </div>
-                  </div>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-3">
-                    <li>Current CGPA: 3.04</li>
-                    <li>Focus on Software Development, AI, and Web Technologies</li>
-                    <li>Active participant in SIBA FEST and Math Olympiad</li>
-                    <li>Attended Two-Day Cyber Security Session by Lincoln Corner</li>
-                    <li>Participated in Sports Gala 2025</li>
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Computer Science</Badge>
-                    <Badge variant="secondary">Software Engineering</Badge>
-                    <Badge variant="secondary">AI & ML</Badge>
-                    <Badge variant="secondary">Web Development</Badge>
-                  </div>
-                </div>
-
-                {/* Intermediate */}
-                <div className="border-b border-border pb-6 last:border-0">
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold">Intermediate (Pre-Engineering)</h3>
-                      <p className="text-primary font-medium">SNAK Govt. Superior Science College</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span>Aug 2019 - May 2021</span>
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-3 w-3" />
-                      <span>Khairpur Mir&apos;s, Pakistan</span>
-                    </div>
-                  </div>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-3">
-                    <li>Secured A1 Grade</li>
-                    <li>Specialized in Mathematics, Physics, and Chemistry</li>
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Pre-Engineering</Badge>
-                    <Badge variant="secondary">A1 Grade</Badge>
-                  </div>
-                </div>
-
-                {/* Matriculation */}
-                <div>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-3">
-                    <div>
-                      <h3 className="text-lg font-semibold">Matriculation (SSC)</h3>
-                      <p className="text-primary font-medium">Govt. Naz Pilot Secondary High School</p>
-                    </div>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <Calendar className="h-4 w-4" />
-                      <span>Aug 2017 - Mar 2019</span>
-                    </div>
-                  </div>
-                  <div className="mb-3">
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <MapPin className="h-3 w-3" />
-                      <span>Khairpur Mir&apos;s, Pakistan</span>
-                    </div>
-                  </div>
-                  <ul className="list-disc list-inside space-y-1 text-muted-foreground mb-3">
-                    <li>Secured A Grade</li>
-                    <li>Strong foundation in Science and Mathematics</li>
-                  </ul>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Matriculation</Badge>
-                    <Badge variant="secondary">A Grade</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          {/* Academic Projects */}
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle>Academic Projects</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">AI Chatbot for Sukkur IBA University</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Created an intelligent chatbot to assist students with university-related queries such as 
-                    admissions, departments, and campus information using NLP techniques.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Python</Badge>
-                    <Badge variant="secondary">NLP</Badge>
-                    <Badge variant="secondary">AI</Badge>
-                  </div>
-                </div>
-
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">Face Recognition Attendance System</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Implemented a facial recognition-based attendance system using computer vision to automatically 
-                    identify students and record attendance accurately.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Python</Badge>
-                    <Badge variant="secondary">Computer Vision</Badge>
-                    <Badge variant="secondary">OpenCV</Badge>
-                  </div>
-                </div>
-
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">RentEase – Rental Management Web Application</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Developed a full-stack rental management web app for property listings, tenant management, 
-                    and rental tracking with a responsive user interface.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">HTML</Badge>
-                    <Badge variant="secondary">CSS</Badge>
-                    <Badge variant="secondary">JavaScript</Badge>
-                  </div>
-                </div>
-
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">File Compression Tool</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Implemented Huffman Coding and LZW algorithms for efficient file compression with 
-                    added encryption for data security.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Java</Badge>
-                    <Badge variant="secondary">GUI</Badge>
-                    <Badge variant="secondary">Algorithms</Badge>
-                  </div>
-                </div>
-
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">ATM Management System</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Developed a banking application supporting secure transactions, balance inquiries, 
-                    cash withdrawal, and fund transfers.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Java</Badge>
-                    <Badge variant="secondary">GUI</Badge>
-                    <Badge variant="secondary">Banking</Badge>
-                  </div>
-                </div>
-
-                <div className="border-b border-border pb-4 last:border-0">
-                  <h4 className="font-semibold mb-2">Maze Solver Game</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Designed a user-controlled maze game featuring move tracking, path validation, 
-                    and unsolvable maze detection.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">Java</Badge>
-                    <Badge variant="secondary">GUI</Badge>
-                    <Badge variant="secondary">Game Dev</Badge>
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="font-semibold mb-2">Sindhri Hotel Management System</h4>
-                  <p className="text-sm text-muted-foreground mb-2">
-                    Built a console-based hotel management system with room booking, check-in/check-out, 
-                    and automated billing features.
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <Badge variant="secondary">C++</Badge>
-                    <Badge variant="secondary">CLI</Badge>
-                    <Badge variant="secondary">Management</Badge>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
+          {/* Technical Skills */}
+          <motion.div {...fadeInUp} className="mb-12">
             <Card>
               <CardHeader>
                 <CardTitle>Technical Skills</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <h4 className="font-semibold mb-2">Programming Languages</h4>
+                  <h4 className="font-semibold mb-2">Security Operations &amp; Concepts</h4>
                   <div className="flex flex-wrap gap-2">
-                    {["Java", "Python", "C++", "C#", "JavaScript", "HTML5", "CSS3"].map((skill) => (
+                    {["Incident Response Lifecycle", "Threat Detection", "Log Analysis", "Vulnerability Management", "MITRE ATT&CK Framework", "NIST CSF", "Phishing Analysis"].map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Web Development</h4>
+                  <h4 className="font-semibold mb-2">Security Tools &amp; Monitoring</h4>
                   <div className="flex flex-wrap gap-2">
-                    {["Frontend Development", "Backend Development", "Responsive Design", "Full Stack"].map((skill) => (
+                    {["SIEM (Google Cloud SIEM)", "Splunk Basics", "Wireshark", "Nmap", "tcpdump", "LetsDefend SOC Platform", "Chrome DevTools"].map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">AI & Machine Learning</h4>
+                  <h4 className="font-semibold mb-2">Networking &amp; Protocols</h4>
                   <div className="flex flex-wrap gap-2">
-                    {["Natural Language Processing", "Computer Vision", "Face Recognition", "Chatbot Development"].map((skill) => (
+                    {["TCP/IP", "DNS", "HTTP/HTTPS", "Firewalls", "Network Traffic Analysis", "Subnetting"].map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Software Development</h4>
+                  <h4 className="font-semibold mb-2">Operating Systems</h4>
                   <div className="flex flex-wrap gap-2">
-                    {["GUI Development", "CLI Applications", "Android Development", "Management Apps", "OOP"].map((skill) => (
+                    {["Linux (Ubuntu/Debian CLI)", "Windows (Event Viewer, Command Line)", "Virtualization Basics"].map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
                     ))}
                   </div>
                 </div>
                 <div>
-                  <h4 className="font-semibold mb-2">Tools & Productivity</h4>
+                  <h4 className="font-semibold mb-2">Programming &amp; Scripting</h4>
                   <div className="flex flex-wrap gap-2">
-                    {["MS Word", "MS Excel", "Git", "Problem Solving", "Analytical Skills", "Team Management"].map((skill) => (
+                    {["Python (Automation/Parsing)", "SQL", "Bash (Basic)", "JavaScript", "C++"].map((skill) => (
+                      <Badge key={skill} variant="outline">{skill}</Badge>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Core Computer Science</h4>
+                  <div className="flex flex-wrap gap-2">
+                    {["Data Structures", "Computer Networks", "Operating Systems", "Database Systems", "Software Engineering"].map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
                     ))}
                   </div>
@@ -369,52 +160,180 @@ export default function ResumePage() {
             </Card>
           </motion.div>
 
-          {/* Extra Curriculum */}
-          <motion.div 
-            {...fadeInUp}
-            className="mb-12"
-          >
+          {/* Certifications & Workshops */}
+          <motion.div {...fadeInUp} className="mb-12">
             <Card>
               <CardHeader>
-                <CardTitle>Extra Curriculum Activities</CardTitle>
+                <CardTitle>Certifications &amp; Workshops</CardTitle>
               </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">✓</div>
-                  <div>
-                    <p className="text-muted-foreground">Attended a Two-Day Cyber Security Session by Lincoln Corner</p>
+              <CardContent>
+                <ul className="space-y-2 text-muted-foreground">
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Google Professional Cybersecurity Certificate — Coursera (2025)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Introduction to SOC — LetsDefend (2025)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Introduction to SIEM — Google Cloud (2025)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Introduction to Cybersecurity — Cisco &amp; IBM (2025)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Python, SQL &amp; Git Certifications — DataCamp (2024–2025)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>Cybersecurity Workshop — Lincoln Corner Khairpur</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-primary mt-1">•</span>
+                    <span>SIBAFEST: Tackle with Tech — Sukkur IBA University</span>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Cybersecurity & Technical Projects */}
+          <motion.div {...fadeInUp} className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>Cybersecurity &amp; Technical Projects</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="border-b border-border pb-4 last:border-0">
+                  <h4 className="font-semibold mb-1">SOC &amp; Security Lab Practice (LetsDefend / Google Cloud SIEM) | 2025</h4>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground mb-2">
+                    <li><strong>Log &amp; Alert Analysis:</strong> Investigated simulated security alerts including phishing emails, brute-force login attempts, and suspicious network connections.</li>
+                    <li><strong>Incident Triage:</strong> Utilized SIEM tools to analyze log sources (Windows Event Logs, HTTP traffic), identify Indicators of Compromise (IOCs), and document investigation steps using the MITRE ATT&amp;CK framework.</li>
+                    <li><strong>PCAP Analysis:</strong> Analyzed network packet captures in Wireshark to inspect malicious payloads and identify unauthorized port scanning.</li>
+                  </ul>
+                </div>
+
+                <div className="border-b border-border pb-4 last:border-0">
+                  <h4 className="font-semibold mb-1">RentEase — Full-Stack Rental Web App (Secure Web Concepts) | 2025</h4>
+                  <p className="text-sm text-muted-foreground mb-2">Tech Stack: Node.js, Express.js, MongoDB, JavaScript, HTML/CSS</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground mb-2">
+                    <li><strong>Authentication &amp; Validation:</strong> Implemented user authentication workflows and server-side input validation to guard against common web vulnerabilities (SQL/NoSQL injection, cross-site scripting fundamentals).</li>
+                    <li><strong>API Security:</strong> Designed RESTful API endpoints enforcing structured data schemas and secure error handling.</li>
+                  </ul>
+                </div>
+
+                <div className="border-b border-border pb-4 last:border-0">
+                  <h4 className="font-semibold mb-1">AI Chatbot for Sukkur IBA University | 2025</h4>
+                  <p className="text-sm text-muted-foreground mb-2">Tech Stack: Python, Flask, NLP</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground mb-2">
+                    <li>Developed an NLP-driven query engine using Python and Flask to automate student inquiry handling.</li>
+                    <li>Ensured secure input sanitization for web queries processed through lightweight Flask endpoints.</li>
+                  </ul>
+                </div>
+
+                <div className="border-b border-border pb-4 last:border-0">
+                  <h4 className="font-semibold mb-1">Face Recognition Attendance System | 2025</h4>
+                  <p className="text-sm text-muted-foreground mb-2">Tech Stack: Python, OpenCV</p>
+                  <ul className="list-disc list-inside space-y-1 text-sm text-muted-foreground mb-2">
+                    <li>Built an automated identification system using computer vision techniques, applying frame preprocessing for reliable feature detection under inconsistent lighting.</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Education */}
+          <motion.div {...fadeInUp} className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>Education</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="border-b border-border pb-4 last:border-0">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <div>
+                      <h3 className="text-lg font-semibold">BS Computer Science</h3>
+                      <p className="text-primary font-medium">Sukkur IBA University — Khairpur Campus</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      <span>Aug 2023 – Present</span>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground mb-2">CGPA: 3.01 / 4.00</p>
+                  <p className="text-sm text-muted-foreground mb-2">
+                    <strong>Relevant Coursework:</strong> Computer Networks, Operating Systems, Database Systems, Web Engineering, Data Structures &amp; Algorithms, Object-Oriented Programming.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary">Computer Science</Badge>
+                    <Badge variant="secondary">Networking</Badge>
+                    <Badge variant="secondary">Security</Badge>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">✓</div>
-                  <div>
-                    <p className="text-muted-foreground">Participated in SIBA FEST at Sukkur IBA University</p>
+
+                <div>
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
+                    <div>
+                      <h3 className="text-lg font-semibold">Intermediate (Pre-Engineering)</h3>
+                      <p className="text-primary font-medium">SNAK Govt. Superior Science College, Khairpur Mir&apos;s</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Calendar className="h-4 w-4" />
+                      <span>Aug 2019 – May 2021</span>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground">Grade: A-1</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* Languages */}
+          <motion.div {...fadeInUp} className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>Languages</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid gap-2 md:grid-cols-3">
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">English:</span>
+                    <span className="text-muted-foreground">Proficient</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Urdu:</span>
+                    <span className="text-muted-foreground">Native</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="font-medium">Sindhi:</span>
+                    <span className="text-muted-foreground">Native</span>
                   </div>
                 </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">✓</div>
-                  <div>
-                    <p className="text-muted-foreground">Competed in the Math Olympiad at Sukkur IBA University</p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="mt-1">✓</div>
-                  <div>
-                    <p className="text-muted-foreground">Took part in the Sports Gala 2025 at Sukkur IBA University</p>
-                  </div>
-                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+
+          {/* References */}
+          <motion.div {...fadeInUp} className="mb-12">
+            <Card>
+              <CardHeader>
+                <CardTitle>References</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-muted-foreground">Available upon request.</p>
               </CardContent>
             </Card>
           </motion.div>
 
           {/* Download Button */}
-          <motion.div 
-            {...fadeInUp}
-            className="text-center"
-          >
+          <motion.div {...fadeInUp} className="text-center">
             <Button size="lg" asChild>
-              <a 
-                href="/Mujeeb_Ur_Rehman_Resume.pdf" 
+              <a
+                href="/Mujeeb_Ur_Rehman_Resume.pdf"
                 download="Mujeeb_Ur_Rehman_Resume.pdf"
                 className="inline-flex items-center"
               >

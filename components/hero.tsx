@@ -8,10 +8,10 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 
 const roles = [
-  "Full Stack Developer",
+  "Aspiring SOC Analyst",
+  "Blue Team & Security Operations",
   "Computer Science Student",
   "CyberSecurity Enthusiast",
-  "Problem Solver",
 ]
 
 export function Hero() {
@@ -118,8 +118,8 @@ export function Hero() {
             className="mx-auto max-w-[700px] text-lg text-muted-foreground/80 md:text-xl leading-relaxed"
             variants={itemVariants}
           >
-            Computer Science student at Sukkur IBA University with a passion for software development and problem-solving. 
-            I specialize in creating management applications, web development, and AI solutions using modern technologies.
+            Computer Science student at Sukkur IBA University specializing in SOC operations, threat detection, and incident response. 
+            Hands-on experience with SIEM, log analysis, and network traffic analysis through practical labs and certifications.
           </motion.p>
 
           {/* CTA Buttons */}
